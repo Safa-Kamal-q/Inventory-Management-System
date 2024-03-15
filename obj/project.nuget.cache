@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "28oIvAKI771mb3A0oJt0H8iHnKS02KFtqkB/kj0tP+WxHcPwf9GxdAoivv3oIv65S66/YCSYMUpGEw1dh3JU4Q==",
+  "success": true,
+  "projectFilePath": "D:\\Inventory Management System\\Inventory Management System.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\safa\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.2\\microsoft.dotnet.ilcompiler.8.0.2.nupkg.sha512",
+    "C:\\Users\\safa\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.2\\microsoft.net.illink.tasks.8.0.2.nupkg.sha512",
+    "C:\\Users\\safa\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.2\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
