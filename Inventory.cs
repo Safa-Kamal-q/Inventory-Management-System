@@ -80,5 +80,20 @@ namespace Inventory_Management_System
 
             Console.WriteLine("Product remove successfully");
         }
+
+        public void SearchingProduct(String productName)
+        {
+            Product? product = products.Find(p => p.Name.ToLowerInvariant().Equals(productName.ToLowerInvariant())); 
+
+            if(product == null)
+            {
+                Console.WriteLine($"Product {productName} not found");
+                return;
+            }
+
+            Console.WriteLine("============================");
+            product.Display();
+            Console.WriteLine("============================");
+        }
     }
 }
