@@ -33,14 +33,14 @@ namespace Inventory_Management_System
             Console.WriteLine("All Products\n========================================");
             foreach (Product product in products)
             {
-                product.Display();
+                Console.WriteLine(product.Display());
             }
             Console.WriteLine("========================================");
         }
 
-        public void EditingItem (String productName, String? newName = null, decimal? newPrice= null, int? newQuantity=null )
+        public void EditingItem (String productName)
         {
-            Product? product = products.Find(p => p.Name.ToLowerInvariant().Equals(productName.ToLowerInvariant()));
+            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if (product == null )
             {
@@ -48,19 +48,32 @@ namespace Inventory_Management_System
                 return;
             }
 
-            if (newName != null)
+            Console.Write("Enter a new name if you want to change the name, otherwise press enter: ");
+            String? newName = Console.ReadLine();
+            Console.Write("Enter a new price if you want to change the price, otherwise press enter: ");
+            String? newPrice = Console.ReadLine();
+            Console.Write("Enter a new quantity if you want to change the quantity, otherwise press enter: ");
+            String? newQuantity = Console.ReadLine();
+
+            
+            if (newName != "")
             {
+                Console.WriteLine(newName);
                 product.Name = newName;
             }
 
-            if (newPrice != null)
+            if (newPrice != "")
             {
-                product.Price = (decimal)newPrice;
+                decimal price;
+                decimal.TryParse(newPrice, out price);
+                product.Price = price;
             }
 
-            if (newQuantity != null)
+            if (newQuantity != "")
             {
-                product.Quantity = (int)newQuantity;
+                int quantity;
+                int.TryParse(newQuantity, out quantity);
+                product.Quantity = quantity;
             }
 
             Console.WriteLine("Product details updated successfully ");
@@ -68,7 +81,7 @@ namespace Inventory_Management_System
 
         public void RemovingItem(String productName)
         {
-            Product? product = products.Find(p => p.Name.ToLowerInvariant().Equals(productName.ToLowerInvariant()));
+            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if(product == null)
             {
@@ -83,7 +96,7 @@ namespace Inventory_Management_System
 
         public void SearchingProduct(String productName)
         {
-            Product? product = products.Find(p => p.Name.ToLowerInvariant().Equals(productName.ToLowerInvariant())); 
+            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)); 
 
             if(product == null)
             {
@@ -92,7 +105,7 @@ namespace Inventory_Management_System
             }
 
             Console.WriteLine("============================");
-            product.Display();
+            Console.WriteLine(product.Display());
             Console.WriteLine("============================");
         }
     }
