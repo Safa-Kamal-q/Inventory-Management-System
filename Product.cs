@@ -8,20 +8,20 @@ namespace Inventory_Management_System
 {
     internal class Product
     {
-        private String name { get; set; }
-        private decimal price { get; set; }
-        private int quantity { get; set; }
+        public String Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
 
         public Product(String name, decimal price, int quantity) 
         {
-            this.name = name;
-            this.price = price;
-            this.quantity = quantity;
+            Name = name;
+            Price = price;
+            Quantity = quantity;
         }
 
-        public String display()
+        public String Display()
         {
-            return $"Name: {name}, price: {price}, quantity: {quantity}";
+            return $"Name: {Name}, price: {Price}, quantity: {Quantity}";
         }
     }
 }

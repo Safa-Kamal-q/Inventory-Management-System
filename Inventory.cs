@@ -33,9 +33,37 @@ namespace Inventory_Management_System
             Console.WriteLine("All Products\n========================================");
             foreach (Product product in products)
             {
-                product.display();
+                product.Display();
             }
             Console.WriteLine("========================================");
+        }
+
+        public void EditingItem (String productName, String? newName = null, decimal? newPrice= null, int? newQuantity=null )
+        {
+            Product? product = products.Find(p => p.Name.ToLowerInvariant().Equals(productName.ToLowerInvariant()));
+
+            if (product == null )
+            {
+                Console.WriteLine($"Product {productName} not found.");
+                return;
+            }
+
+            if (newName != null)
+            {
+                product.Name = newName;
+            }
+
+            if (newPrice != null)
+            {
+                product.Price = (decimal)newPrice;
+            }
+
+            if (newQuantity != null)
+            {
+                product.Quantity = (int)newQuantity;
+            }
+
+            Console.WriteLine("Product details updated successfully ");
         }
     }
 }
