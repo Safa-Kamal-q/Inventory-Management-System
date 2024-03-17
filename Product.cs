@@ -8,18 +8,18 @@ namespace Inventory_Management_System
 {
     internal class Product
     {
-        public String Name { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        internal String Name { get; set; }
+        internal decimal Price { get; set; }
+        internal int Quantity { get; set; }
 
-        public Product(String name, decimal price, int quantity) 
+        internal Product(String name, decimal price, int quantity) 
         {
             Name = name;
             Price = price;
             Quantity = quantity;
         }
 
-        public String Display()
+        internal String Display()
         {
             return $"Name: {Name}, price: {Price}, quantity: {Quantity}";
         }

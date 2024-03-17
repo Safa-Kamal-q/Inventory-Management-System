@@ -11,102 +11,81 @@ namespace Inventory_Management_System
     {
         private List<Product> products;
 
-        public Inventory()
+        internal Inventory()
         {
             products = new List<Product>();
         }
 
-        public void AddingItem(Product product)
+        internal void AddItem(Product product)
         {
             products.Add(product);
-            Console.WriteLine("Item added successfully");
         }
 
-        public void DisplayingAllProducts()
+        internal List<Product> DisplayAllProducts()
         {
             if (products.Count == 0)
             {
-                Console.WriteLine("No products to display");
-                return;
+                throw new Exception("No products to display");
+
             }
 
-            Console.WriteLine("All Products\n========================================");
-            foreach (Product product in products)
-            {
-                Console.WriteLine(product.Display());
-            }
-            Console.WriteLine("========================================");
+            return products;
         }
 
-        public void EditingItem (String productName)
+        internal void EditItem (string productName, string newName, string newPrice, string newQuantity )
         {
             Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if (product == null )
             {
-                Console.WriteLine($"Product {productName} not found.");
-                return;
+                throw new Exception($"Product {productName} not found.");
             }
 
-            Console.Write("Enter a new name if you want to change the name, otherwise press enter: ");
-            String? newName = Console.ReadLine();
-            Console.Write("Enter a new price if you want to change the price, otherwise press enter: ");
-            String? newPrice = Console.ReadLine();
-            Console.Write("Enter a new quantity if you want to change the quantity, otherwise press enter: ");
-            String? newQuantity = Console.ReadLine();
-
-            
-            if (newName != "")
+            if (newName != String.Empty)
             {
                 Console.WriteLine(newName);
                 product.Name = newName;
             }
 
-            if (newPrice != "")
+            if (newPrice != String.Empty)
             {
                 decimal price;
                 decimal.TryParse(newPrice, out price);
                 product.Price = price;
             }
 
-            if (newQuantity != "")
+            if (newQuantity != String.Empty)
             {
                 int quantity;
                 int.TryParse(newQuantity, out quantity);
                 product.Quantity = quantity;
             }
 
-            Console.WriteLine("Product details updated successfully ");
         }
 
-        public void RemovingItem(String productName)
+        internal void RemoveItem(String productName)
         {
             Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if(product == null)
             {
-                Console.WriteLine($"Product {productName} not found.");
-                return;
+                throw new Exception($"Product {productName} not found.");
             }
 
             products.Remove(product);
 
-            Console.WriteLine("Product remove successfully");
         }
 
-        public void SearchingProduct(String productName)
+        internal Product SearchProduct(String productName)
         {
             Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)); 
 
             if(product == null)
             {
-                Console.WriteLine($"Product {productName} not found");
-                return;
+                throw new Exception($"Product {productName} not found");
             }
 
-            Console.WriteLine("============================");
-            Console.WriteLine(product.Display());
-            Console.WriteLine("============================");
+            return product;
         }
     }
 }
