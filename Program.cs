@@ -1,8 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Xml.Linq;
-
-namespace Inventory_Management_System
+﻿namespace Inventory_Management_System
 {
     internal class Program
     {

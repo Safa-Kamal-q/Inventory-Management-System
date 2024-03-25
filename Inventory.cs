@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Inventory_Management_System
+﻿namespace Inventory_Management_System
 {
     internal class Inventory
     {
@@ -34,7 +27,7 @@ namespace Inventory_Management_System
 
         internal void EditItem (string productName, string newName, string newPrice, string newQuantity )
         {
-            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+            var product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if (product == null )
             {
@@ -65,7 +58,7 @@ namespace Inventory_Management_System
 
         internal void RemoveItem(String productName)
         {
-            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+            var product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
 
             if(product == null)
             {
@@ -78,7 +71,7 @@ namespace Inventory_Management_System
 
         internal Product SearchProduct(String productName)
         {
-            Product? product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)); 
+            var product = products.Find(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)); 
 
             if(product == null)
             {
