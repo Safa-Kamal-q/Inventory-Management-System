@@ -1,8 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Xml.Linq;
-
-namespace Inventory_Management_System
+﻿namespace Inventory_Management_System
 {
     internal class Program
     {
@@ -40,32 +36,81 @@ namespace Inventory_Management_System
                             int productQuantity;
                             int.TryParse(Console.ReadLine(), out productQuantity);
 
-                            inventory.AddingItem(new Product(productName, productPrice, productQuantity));
+                            inventory.AddItem(new Product(productName, productPrice, productQuantity));
+                            Console.WriteLine("Item added successfully");
                             break;
 
                         case 2:
-                            inventory.DisplayingAllProducts();
+                            try
+                            {
+                                List<Product> products = inventory.DisplayAllProducts();
+
+                                Console.WriteLine("All Products\n========================================");
+                                foreach (Product product in products)
+                                {
+                                    Console.WriteLine(product.Display());
+                                }
+                                Console.WriteLine("========================================");
+
+                            }catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);                    
+                            }
                             break;
 
                         case 3:
                             Console.WriteLine("Please enter the name of the product you want to edit:") ;
                             String searchName= Console.ReadLine();
-                        
-                            inventory.EditingItem(searchName);
+                            Console.Write("Enter a new name if you want to change the name, otherwise press enter: ");
+                            String? newName = Console.ReadLine();
+                            Console.Write("Enter a new price if you want to change the price, otherwise press enter: ");
+                            String? newPrice = Console.ReadLine();
+                            Console.Write("Enter a new quantity if you want to change the quantity, otherwise press enter: ");
+                            String? newQuantity = Console.ReadLine();
+
+                            try
+                            {
+                                inventory.EditItem(searchName, newName, newPrice, newQuantity);
+                                Console.WriteLine("Product details updated successfully ");
+
+                            }catch(Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+
                             break;
 
                         case 4:
                             Console.WriteLine("Please enter the name of the product you want to delete:");
                             String deleteSearchName = Console.ReadLine();
 
-                            inventory.RemovingItem(deleteSearchName);
+                            try
+                            {
+                                inventory.RemoveItem(deleteSearchName);
+                                Console.WriteLine("Product remove successfully");
+
+                            }catch( Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                             break;
 
                         case 5:
                             Console.WriteLine("Please enter the name of the product you want to search for:");
                             String searchProductName= Console.ReadLine();
 
-                            inventory.SearchingProduct(searchProductName);
+                            try
+                            {
+                                Product product = inventory.SearchProduct(searchProductName);
+                                Console.WriteLine("============================");
+                                Console.WriteLine(product.Display());
+                                Console.WriteLine("============================");
+
+                            }catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                            
                             break;
 
                         case 6:
